@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//constants
+import '../constants/doubles.dart'
+
 class DetailPage extends StatelessWidget {
   final dynamic item;
 
@@ -26,15 +29,15 @@ class DetailPage extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               children: <Widget>[
-                Icon(Icons.star, size: 16),
+                Icon(Icons.star, size: iconSize),
                 SizedBox(width: 5),
                 Text('${item['stargazers_count']}'),
                 SizedBox(width: 20),
-                Icon(Icons.remove_red_eye, size: 16),
+                Icon(Icons.remove_red_eye, size: iconSize),
                 SizedBox(width: 5),
                 Text('${item['watchers_count']}'),
                 SizedBox(width: 20),
-                Icon(Icons.call_split, size: 16),
+                Icon(Icons.call_split, size: iconSize),
                 SizedBox(width: 5),
                 Text('${item['forks_count']}'),
               ],
@@ -42,7 +45,7 @@ class DetailPage extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               children: <Widget>[
-                Icon(Icons.warning, size: 16),
+                Icon(Icons.warning, size: iconSize),
                 SizedBox(width: 5),
                 Text('${item['open_issues_count']} open issues'),
               ],
