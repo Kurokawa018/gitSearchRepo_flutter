@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+
       ),
       home: const MyHomePage(title: 'ゆめみ　Flutter課題'),
     );
@@ -85,19 +86,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     return Container(
                       child: Column(
                         children: [
-                          ListTile(
-                            title: Text(_items[index]['full_name']),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => DetailPage(item: _items[index])),
-                              );
-                            },
+                          Hero(
+                            tag: _items[index]['full_name'],
+                            child: ListTile(
+                              title: Text(_items[index]['full_name']),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => DetailPage(item: _items[index])),
+                                );
+                              },
+                            ),
                           ),
                           Divider(thickness: 1),
                         ],
                       ),
                     );
+
                   },
                 ),
               ),

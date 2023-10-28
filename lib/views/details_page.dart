@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //constants
-import '../constants/doubles.dart'
+import '../constants/doubles.dart';
 
 class DetailPage extends StatelessWidget {
   final dynamic item;
@@ -12,7 +12,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(item['full_name']),
+        title: Hero(tag: item['full_name'], child: Text(item['full_name'], style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.normal),)),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -21,7 +21,7 @@ class DetailPage extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                CircleAvatar(backgroundImage: NetworkImage(item['owner']['avatar_url'])),
+                Hero(tag: item['owner']['avatar_url'], child: CircleAvatar(backgroundImage: NetworkImage(item['owner']['avatar_url']))),
                 SizedBox(width: 10),
                 Text(item['language']),
               ],
@@ -29,15 +29,15 @@ class DetailPage extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               children: <Widget>[
-                Icon(Icons.star, size: iconSize),
+                Hero(tag: '${item['full_name']}-star', child: Icon(Icons.star, size: iconSize)),
                 SizedBox(width: 5),
                 Text('${item['stargazers_count']}'),
                 SizedBox(width: 20),
-                Icon(Icons.remove_red_eye, size: iconSize),
+                Hero(tag: '${item['full_name']}-watchers', child: Icon(Icons.remove_red_eye, size: iconSize)),
                 SizedBox(width: 5),
                 Text('${item['watchers_count']}'),
                 SizedBox(width: 20),
-                Icon(Icons.call_split, size: iconSize),
+                Hero(tag: '${item['full_name']}-forks', child: Icon(Icons.call_split, size: iconSize)),
                 SizedBox(width: 5),
                 Text('${item['forks_count']}'),
               ],
