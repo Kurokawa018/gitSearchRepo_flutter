@@ -1,0 +1,1 @@
+const int iconSize = 16;
