@@ -12,7 +12,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Hero(tag: item['full_name'], child: Text(item['full_name'], style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.normal),)),
+        title: Hero(tag: item['full_name'], child: Text(item['full_name'], style: TextStyle(color: Colors.black,fontSize: titleFontSize, fontWeight: FontWeight.normal),)),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

@@ -6,6 +6,9 @@ import 'model/API_model.dart';
 //views
 import 'views/details_page.dart';
 
+//constants
+import '../constants/doubles.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -59,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(widget.title, style: TextStyle(fontSize: titleFontSize),),
       ),
       body: Center(
         child: Padding(
@@ -77,6 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                 onPressed: _search,
                 child: Text('Search'),
+              ),
+              SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:[
+                  Text('Search Results', textAlign: TextAlign.left, style: TextStyle(fontSize: titleFontSize), ),
+                ]
               ),
               SizedBox(height: 20),
               Expanded(
