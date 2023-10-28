@@ -82,11 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Search'),
               ),
               SizedBox(height: 20),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
-                  Text('Search Results', textAlign: TextAlign.left, style: TextStyle(fontSize: titleFontSize), ),
-                ]
+              _items.length == 0 ? Text("No results found.",textAlign: TextAlign.left, style: TextStyle(fontSize: titleFontSize)):  Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:[
+                    Text('Search Results', textAlign: TextAlign.left, style: TextStyle(fontSize: titleFontSize), ),
+                  ]
               ),
               SizedBox(height: 20),
               Expanded(
