@@ -20,7 +20,6 @@ class GithubModel extends ChangeNotifier {
     items = result!;
     if (items.length == 0) {
       isEmpty = true;
-      isSearched = false;
     } else {
       isSearched = true;
     }
@@ -55,5 +54,10 @@ class GithubModel extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+  void onTapped() {
+    isSearched = false;
+    notifyListeners();
+  }
+
 }
 
