@@ -76,7 +76,7 @@ class MyHomePage extends ConsumerWidget {
                     query = text;
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: sizedHeight),
                 ElevatedButton(
                   onPressed: () async {
                     //gitHubモデルのsearch起動
@@ -85,7 +85,7 @@ class MyHomePage extends ConsumerWidget {
                   },
                     child: Text('Search'),
                     ),
-                SizedBox(height: 20),
+                SizedBox(height: sizedHeight),
                 Expanded(child: SearchResultBuilder(githubModel: githubModel, items: _items)),
                   ],
                 ),

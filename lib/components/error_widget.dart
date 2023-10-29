@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 
+//constants
+import '../constants/doubles.dart';
+
 class SearchError extends StatelessWidget {
   SearchError({
     Key? key
@@ -12,7 +15,7 @@ class SearchError extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 20,),
+          SizedBox(height: sizedHeight,),
           Icon(
             Icons.error_outline,
             color: Colors.red,

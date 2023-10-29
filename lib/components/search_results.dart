@@ -53,7 +53,7 @@ class SearchResultBuilder extends StatelessWidget {
                    Text('Search Results', textAlign: TextAlign.left,
                      style: TextStyle(fontSize: titleFontSize),),
                  ]),
-             SizedBox(height: 20,),
+             SizedBox(height: sizedHeight,),
              Expanded(
                child :
                ListView.builder(
