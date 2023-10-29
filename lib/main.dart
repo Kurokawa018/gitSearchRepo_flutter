@@ -80,7 +80,7 @@ class MyHomePage extends ConsumerWidget {
                   ),
                   controller: _controller,
                   onChanged: (text) {
-                    githubModel.onTapped();
+                    githubModel.onChanged();
                     query = text;
                   },
                 ),
