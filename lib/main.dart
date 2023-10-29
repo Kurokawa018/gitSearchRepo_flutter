@@ -6,6 +6,7 @@ import 'dart:convert';
 //models
 import 'model/API_model.dart';
 
+
 //views
 import 'views/details_page.dart';
 
@@ -39,6 +40,7 @@ class MyHomePage extends ConsumerWidget {
   final _controller = TextEditingController();
   List<dynamic> _items = [];
   bool  isLoading = false;
+
 
   // void _search() async {
   //   var client = new GithubModel();
@@ -85,22 +87,25 @@ class MyHomePage extends ConsumerWidget {
                     child: Text('Search'),
                     ),
                 SizedBox(height: 20),
-                _items.length == 0 ? Text(
-                    "No results found.", textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: titleFontSize))
-                        : Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text('Search Results', textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: titleFontSize),),
-                    ]
-                    ),
-                SizedBox(height: 20),
                 githubModel.isLoading ?
                   Center(
                     child: const Text("Loading now"),
                   ):
-                  SizedBox(height: 20),
+                  SizedBox(height: 0),
+                githubModel.isEmpty ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('No Search Results', textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: titleFontSize),),
+                    ] )
+                    : SizedBox(height: 0,),
+                githubModel.isSearched ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Search Results', textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: titleFontSize),),
+                  ] ): SizedBox(height: 0),
+
                 Expanded(
                   child :
                       ListView.builder(
