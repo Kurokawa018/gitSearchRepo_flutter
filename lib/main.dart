@@ -41,6 +41,7 @@ class MyHomePage extends ConsumerWidget {
   List<dynamic> _items = [];
   bool  isLoading = false;
 
+
   // void _search() async {
   //   var client = new GithubModel();
   //   var result = await client.fetchRepositories(_controller.text);
@@ -91,14 +92,20 @@ class MyHomePage extends ConsumerWidget {
                     child: const Text("Loading now"),
                   ):
                   SizedBox(height: 0),
-                _items.length == 0 ? SizedBox(height: 0,)
-                    : Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                githubModel.isEmpty ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Search Results', textAlign: TextAlign.left,
+                      Text('No Search Results', textAlign: TextAlign.left,
                         style: TextStyle(fontSize: titleFontSize),),
-                    ]
-                ),
+                    ] )
+                    : SizedBox(height: 0,),
+                githubModel.isSearched ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Search Results', textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: titleFontSize),),
+                  ] ): SizedBox(height: 0),
+
                 Expanded(
                   child :
                       ListView.builder(

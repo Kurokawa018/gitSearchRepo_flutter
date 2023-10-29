@@ -11,11 +11,19 @@ final githubProvider = ChangeNotifierProvider(
 class GithubModel extends ChangeNotifier {
   bool isLoading = false;
   List<dynamic> items = [];
+  bool  isEmpty = false;
+  bool  isSearched = false;
 
   Future<void> search(String query) async {
     var result = await fetchRepositories(query);
     //nullチェック
     items = result!;
+    if (items.length == 0) {
+      isEmpty = true;
+      isSearched = false;
+    } else {
+      isSearched = true;
+    }
     isLoading = false;
     notifyListeners();
   }
@@ -40,6 +48,7 @@ class GithubModel extends ChangeNotifier {
   }
   void startLoading() {
     isLoading = true;
+    isEmpty = false;
     notifyListeners();
   }
   void endLoading() {
