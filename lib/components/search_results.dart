@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:yumemi_flutter/constants/strings.dart';
 
 //model
 import '../model/API_model.dart';
@@ -9,6 +10,7 @@ import '../views/details_page.dart';
 
 //constants
 import '../constants/doubles.dart';
+import '../constants/strings.dart';
 
 //components
 import 'error_widget.dart';
@@ -31,14 +33,14 @@ class SearchResultBuilder extends StatelessWidget {
         //リクエストが走っているときに表示される。
         githubModel.isLoading ?
         Center(
-          child: const Text("Loading now"),
+          child: const Text(loadingText),
         ):
         SizedBox(height: 0),
         //レスポンスの検索結果が空の時に表示される
         githubModel.isEmpty ? Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('No Search Results', textAlign: TextAlign.left,
+              Text(noResults, textAlign: TextAlign.left,
                 style: TextStyle(fontSize: titleFontSize),),
             ] )
             : SizedBox(height: 0,),
@@ -50,7 +52,7 @@ class SearchResultBuilder extends StatelessWidget {
              Row(
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
-                   Text('Search Results', textAlign: TextAlign.left,
+                   Text(searchResults, textAlign: TextAlign.left,
                      style: TextStyle(fontSize: titleFontSize),),
                  ]),
              SizedBox(height: sizedHeight,),

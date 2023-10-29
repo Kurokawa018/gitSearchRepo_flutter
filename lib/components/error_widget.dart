@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //constants
 import '../constants/doubles.dart';
+import '../constants/strings.dart';
 
 class SearchError extends StatelessWidget {
   SearchError({
@@ -23,12 +24,12 @@ class SearchError extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: Text('エラーが発生しました。',
+            child: Text(errorTitle,
                 style: Theme.of(context).textTheme.headline6),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8),
-            child: Text('申し訳ございませんが、再度検索してください',
+            child: Text(errorText,
                 style: Theme.of(context).textTheme.subtitle1),
           ),
         ],

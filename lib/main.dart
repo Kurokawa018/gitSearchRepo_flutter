@@ -15,6 +15,7 @@ import 'views/details_page.dart';
 
 //constants
 import '../constants/doubles.dart';
+import '../constants/strings.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -56,7 +57,7 @@ class MyHomePage extends ConsumerWidget {
             .of(context)
             .colorScheme
             .inversePrimary,
-        title: Text("ゆめみ Flutter", style: TextStyle(fontSize: titleFontSize),),
+        title: Text(appTitle, style: TextStyle(fontSize: titleFontSize),),
       ),
       body: Center(
           child: Padding(
@@ -67,7 +68,7 @@ class MyHomePage extends ConsumerWidget {
               children: <Widget>[
                 TextField(
                   decoration: InputDecoration(
-                    hintText: 'Enter a keyword',
+                    hintText: hintText,
                   ),
                   controller: _controller,
                   onChanged: (text) {
@@ -83,7 +84,7 @@ class MyHomePage extends ConsumerWidget {
                     await githubModel.search(query);
                     _items = githubModel.items;
                   },
-                    child: Text('Search'),
+                    child: Text(buttonText),
                     ),
                 SizedBox(height: sizedHeight),
                 Expanded(child: SearchResultBuilder(githubModel: githubModel, items: _items)),
