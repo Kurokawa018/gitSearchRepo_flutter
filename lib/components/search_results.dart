@@ -10,6 +10,9 @@ import '../views/details_page.dart';
 //constants
 import '../constants/doubles.dart';
 
+//components
+import 'error_widget.dart';
+
 
 class SearchResultBuilder extends StatelessWidget {
   const SearchResultBuilder({
@@ -47,6 +50,7 @@ class SearchResultBuilder extends StatelessWidget {
                    Text('Search Results', textAlign: TextAlign.left,
                      style: TextStyle(fontSize: titleFontSize),),
                  ]),
+             SizedBox(height: 20,),
              Expanded(
                child :
                ListView.builder(
@@ -77,6 +81,8 @@ class SearchResultBuilder extends StatelessWidget {
              ),
            ],
          )) : SizedBox(height: 0),
+        githubModel.isError ? SearchError()
+            : SizedBox(height: 0,),
       ],
     );
   }

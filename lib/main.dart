@@ -44,15 +44,6 @@ class MyHomePage extends ConsumerWidget {
   List<dynamic> _items = [];
   bool  isLoading = false;
   String query = "";
-  // void _search() async {
-  //   var client = new GithubModel();
-  //   var result = await client.fetchRepositories(_controller.text);
-  //   print("=====getting API results==========");
-  //   //nullチェック
-  //   _items = result!;
-  //   print(_items
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -94,7 +85,7 @@ class MyHomePage extends ConsumerWidget {
                     child: Text('Search'),
                     ),
                 SizedBox(height: 20),
-                Expanded(child: SearchResultBuilder(githubModel: githubModel, items: _items))
+                Expanded(child: SearchResultBuilder(githubModel: githubModel, items: _items)),
                   ],
                 ),
               )

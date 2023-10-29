@@ -13,6 +13,7 @@ class GithubModel extends ChangeNotifier {
   List<dynamic> items = [];
   bool  isEmpty = false;
   bool  isSearched = false;
+  bool  isError = false;
 
   Future<void> search(String query) async {
     var result = await fetchRepositories(query);
@@ -28,7 +29,7 @@ class GithubModel extends ChangeNotifier {
   }
 
 
-  Future<List<dynamic>?> fetchRepositories(String query) async {
+  Future<List<dynamic>> fetchRepositories(String query) async {
     //Loadingの開始
     startLoading();
     //リクエストの開始
@@ -40,6 +41,10 @@ class GithubModel extends ChangeNotifier {
       var jsonResponse = json.decode(response.body);
       return jsonResponse['items'];
     } else {
+      isError = true;
+      isLoading = false;
+      notifyListeners();
+      // print(response.statusCode);
       throw Exception('Failed to load repositories');
     }
     //Loadingの収量
@@ -54,8 +59,10 @@ class GithubModel extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
-  void onTapped() {
+  void onChanged() {
     isSearched = false;
+    isLoading = false;
+    isError = false;
     notifyListeners();
   }
 
