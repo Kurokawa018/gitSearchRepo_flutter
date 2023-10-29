@@ -6,6 +6,7 @@ import 'dart:convert';
 //models
 import 'model/API_model.dart';
 
+
 //views
 import 'views/details_page.dart';
 
