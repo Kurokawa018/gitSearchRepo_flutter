@@ -86,22 +86,19 @@ class MyHomePage extends ConsumerWidget {
                     child: Text('Search'),
                     ),
                 SizedBox(height: 20),
-                _items.length == 0 ? Text(
-                    "No results found.", textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: titleFontSize))
-                        : Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text('Search Results', textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: titleFontSize),),
-                    ]
-                    ),
-                SizedBox(height: 20),
                 githubModel.isLoading ?
                   Center(
                     child: const Text("Loading now"),
                   ):
-                  SizedBox(height: 20),
+                  SizedBox(height: 0),
+                _items.length == 0 ? SizedBox(height: 0,)
+                    : Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Search Results', textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: titleFontSize),),
+                    ]
+                ),
                 Expanded(
                   child :
                       ListView.builder(
