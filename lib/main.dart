@@ -71,6 +71,7 @@ class MyHomePage extends ConsumerWidget {
                   ),
                   controller: _controller,
                   onChanged: (text) {
+                    //テキストフィールドの文字が変更になった際にUIを変更する
                     githubModel.onChanged();
                     query = text;
                   },

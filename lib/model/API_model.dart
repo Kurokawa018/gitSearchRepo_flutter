@@ -20,11 +20,13 @@ class GithubModel extends ChangeNotifier {
     //nullチェック
     items = result!;
     if (items.length == 0) {
+      //リクエストが返ってきたが、レスポンスが空の時
       isEmpty = true;
     } else {
+      //リクエストが返ってきてかつ、レスポンスが空じゃないとき
       isSearched = true;
     }
-    isLoading = false;
+    endLoading();
     notifyListeners();
   }
 
@@ -40,15 +42,16 @@ class GithubModel extends ChangeNotifier {
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
       return jsonResponse['items'];
-    } else {
+    } else {//StatusCodeが200以外の時
+      //ErrorResultsの表示用フラグ
       isError = true;
+      //Loadingの終了
       isLoading = false;
       notifyListeners();
       // print(response.statusCode);
       throw Exception('Failed to load repositories');
     }
-    //Loadingの収量
-    endLoading();
+
   }
   void startLoading() {
     isLoading = true;
@@ -59,7 +62,9 @@ class GithubModel extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+
   void onChanged() {
+    //TextFieldの値が変更されたとき
     isSearched = false;
     isLoading = false;
     isError = false;

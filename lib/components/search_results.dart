@@ -28,11 +28,13 @@ class SearchResultBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //リクエストが走っているときに表示される。
         githubModel.isLoading ?
         Center(
           child: const Text("Loading now"),
         ):
         SizedBox(height: 0),
+        //レスポンスの検索結果が空の時に表示される
         githubModel.isEmpty ? Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -40,6 +42,7 @@ class SearchResultBuilder extends StatelessWidget {
                 style: TextStyle(fontSize: titleFontSize),),
             ] )
             : SizedBox(height: 0,),
+        //Searchボタンタップ時、かつレスポンスの長さが0じゃないときに表示される。TextFieldが変更時に非表示になる
         githubModel.isSearched ?
          Expanded(child:
          Column(
@@ -67,7 +70,7 @@ class SearchResultBuilder extends StatelessWidget {
                                Navigator.push(
                                  context,
                                  MaterialPageRoute(builder: (context) =>
-                                     DetailPage(item: items[index])),
+                                    DetailPage(items: items[index])),
                                );
                              },
                            ),
@@ -81,6 +84,7 @@ class SearchResultBuilder extends StatelessWidget {
              ),
            ],
          )) : SizedBox(height: 0),
+        //レスポンスのstatusが200以外の時に表示される
         githubModel.isError ? SearchError()
             : SizedBox(height: 0,),
       ],
