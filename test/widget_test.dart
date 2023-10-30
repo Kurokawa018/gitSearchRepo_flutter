@@ -8,23 +8,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_test/flutter_test.dart';
 import 'package:yumemi_flutter/main.dart';
+import '../lib/model/API_model.dart';
+import '../lib/views/details_page.dart';
+import 'package:mockito/mockito.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
+
+class MockClient extends Mock implements http.Client {}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Test repository search and display results', (WidgetTester tester) async {
+    final client = MockClient();
+
+    // Use Mockito to return a successful response when it calls the
+    // provided http.Client.
+    when(client.get(Uri.parse('https://api.github.com/search/repositories?q=flutter')))
+        .thenAnswer((_) async => http.Response('{"items": [{"full_name": "flutter/flutter"}]}', 200));
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+        MaterialApp(home: MyHomePage()),
+      );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the search field exists.
+    expect(find.byType(TextField), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Enter 'flutter' into the TextField.
+    await tester.enterText(find.byType(TextField), 'flutter');
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Tap the search button.
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+
+    // Verify that the API call is made and results are displayed.
+    expect(find.byType(ListView), findsOneWidget);
+
+    // Tap the first item in the list.
+    await tester.tap(find.byType(ListTile).first);
+    await tester.pumpAndSettle();
+
+    // Verify that the detail page is displayed.
+    expect(find.byType(DetailPage), findsOneWidget);
   });
 }
+
