@@ -1,6 +1,7 @@
 //packages
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 
 //models
@@ -31,9 +32,15 @@ class MyApp extends StatelessWidget {
       title: 'ゆめみ',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
 
+        //↓ハロウィン使用のテーマ↓//
+        //primarySwatch: Colors.orange,
+        //textTheme: GoogleFonts.emilysCandyTextTheme(),
+        //scaffoldBackgroundColor: Colors.orange[100],
+
+        useMaterial3: true,
       ),
+      darkTheme: ThemeData.dark(),
       home: MyHomePage(),
     );
   }
@@ -53,10 +60,7 @@ class MyHomePage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(appTitle, style: TextStyle(fontSize: titleFontSize),),
       ),
       body: Center(
