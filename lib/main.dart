@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
 
-        //↓ハロウィン使用のテーマ↓//
+        //↓ハロウィン仕様のテーマ↓//
         //primarySwatch: Colors.orange,
         //textTheme: GoogleFonts.emilysCandyTextTheme(),
         //scaffoldBackgroundColor: Colors.orange[100],

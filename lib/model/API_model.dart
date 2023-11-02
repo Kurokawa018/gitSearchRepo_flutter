@@ -41,6 +41,7 @@ class GithubModel extends ChangeNotifier {
     print("===" + response.body + "========");
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
+      print(jsonResponse);
       return jsonResponse['items'];
     } else {//StatusCodeが200以外の時
       //ErrorResultsの表示用フラグ
